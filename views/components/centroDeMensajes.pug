@@ -1,0 +1,47 @@
+<h3>Centro de mensajes</h3>
+<br>
+<form data-toggle="validator">
+  <div class="form-group">
+    <label for="mensajeEmail">Ingrese Email</label>
+    <input type="email" class="form-control" id="mensajeEmail" aria-describedby="emailHelp" placeholder="pablo@mail.com">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="nombreTexto">Ingrese nombre</label>
+    <div id="nombre">
+    </div>
+    <input type="text" class="form-control" id="nombreTexto" placeholder="Nombre">
+  </div>
+  <div class="form-group">
+    <label for="apellidoTexto">Ingrese apellido</label>
+    <div id="apellido">
+    </div>
+    <input type="text" class="form-control" id="apellidoTexto" placeholder="Apellido">
+  </div>
+  <div class="form-group">
+    <label for="edadTexto">Ingrese edad</label>
+    <div id="edad">
+    </div>
+    <input type="text" class="form-control" id="edadTexto" placeholder="Edad">
+  </div>
+  <div class="form-group">
+    <label for="aliasTexto">Ingrese alias</label>
+    <div id="alias">
+    </div>
+    <input type="text" class="form-control" id="aliasTexto" placeholder="Alias">
+  </div>
+  <div class="form-group">
+    <label for="avatarTexto">Ingrese url avatar</label>
+    <div id="avatar">
+    </div>
+    <input type="text" class="form-control" id="avatarTexto" placeholder="Avatar">
+  </div>
+  
+  <div class="form-group">
+    <label for="mensajeTexto">Ingrese mensaje</label>
+    <div id="mensajes">
+    </div>
+    <input type="text" class="form-control" id="mensajeTexto" placeholder="Mensaje">
+  </div>
+  <button onclick="enviarMensaje(event)" type="submit" class="btn btn-primary">Enviar</button>
+</form>
