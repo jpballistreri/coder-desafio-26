@@ -6,6 +6,7 @@ import MongoStore from "connect-mongo";
 import { DBSesiones } from "./db";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import passport from "passport";
 
 import { DBService, DBMensajesSqlite } from "./db";
 import * as http from "http";
@@ -33,6 +34,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 app.use(session(DBSesiones));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/api", routerApi);
 app.use("/productos", web);
