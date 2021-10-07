@@ -14,9 +14,11 @@ const loginFunc = async (req, username, password, done) => {
   const user = await UserModel.findOne({ username });
 
   if (!user) {
+    console.log("NO EXISTE USUARIOOOO");
     return done(null, false);
   }
-  if (!user.isValidPassword(password)) {
+
+  if ((await user.isValidPassword(password)) === false) {
     return done(null, false);
   }
   console.log("SALIO TODO BIEN");
