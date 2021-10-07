@@ -14,10 +14,10 @@ const loginFunc = async (req, username, password, done) => {
   const user = await UserModel.findOne({ username });
 
   if (!user) {
-    return done(null, false, { message: "User does not exist" });
+    return done(null, false);
   }
   if (!user.isValidPassword(password)) {
-    return done(null, false, { message: "Password is not valid." });
+    return done(null, false);
   }
   console.log("SALIO TODO BIEN");
   return done(null, user);
@@ -67,7 +67,7 @@ passport.use("login", new LocalStrategy(strategyOptions, loginFunc));
 passport.use("signup", new LocalStrategy(strategyOptions, signUpFunc));
 
 passport.serializeUser((user, done) => {
-  console.log(user);
+  // console.log(user);
   done(null, user._id);
 });
 
@@ -78,7 +78,9 @@ passport.deserializeUser((userId, done) => {
 });
 
 export const isLoggedIn = (req, res, done) => {
-  if (!req.user) return res.status(401).json({ msg: "Unathorized" });
+  if (!req.isAuthenticated()) return res.render("login");
 
   done();
 };
+
+export default passport;

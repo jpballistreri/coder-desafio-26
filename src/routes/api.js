@@ -4,13 +4,26 @@ import { DBProductos } from "../services/db";
 import { isLoggedIn } from "../../middlewares/auth";
 import { FakerService } from "../services/faker";
 import UserRouter from "./user";
-import passport from "passport";
+import passport from "../../middlewares/auth";
 
 const router = express.Router();
 
 router.post("/login", passport.authenticate("login"), function (req, res) {
-  res.json(req.user);
+  console.log("LOGUEO OK");
+  res.redirect("/productos/vista");
 });
+
+//router.post("/login", (req, res, next) => {
+//  passport.authenticate("login", function (err, user) {
+//    console.log(err, user);
+//    if (err) {
+//      return next(err);
+//    }
+//    if (!user) return res.status(401).json({ msj: "No existe el usuario" });
+//
+//    res.redirect("/productos/vista");
+//  })(req, res, next);
+//});
 
 router.post("/signup", (req, res, next) => {
   passport.authenticate("signup", function (err, user, info) {
@@ -24,11 +37,7 @@ router.post("/signup", (req, res, next) => {
   })(req, res, next);
 });
 
-router.get("/hello", (req, res) => {
-  res.json({ msg: "HOLA", session: req.session });
-});
-
-router.use("/user", isLoggedIn, UserRouter);
+//router.use("/user", isLoggedIn, UserRouter);
 
 router.get("/productos/", async (req, res) => {
   const items = await DBProductos.get();
@@ -56,7 +65,7 @@ const validateLogIn = (req, res, next) => {
   else res.redirect("/productos/login");
 };
 
-router.post("/productos/", validateLogIn, async (req, res) => {
+router.post("/productos/", isLoggedIn, async (req, res) => {
   const { title, price, thumbnail } = req.body;
   //Validar datos ingresados
   if (

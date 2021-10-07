@@ -1,0 +1,16 @@
+h2 Registro de usuario
+form(class="form" action="/api/signup" method="post" role="form" autocomplete="off")
+    div(class="form-group")
+        input(id="username" name='username' placeholder="Nombre de usuario" class="form-control" type="text" required)
+    div(class="form-group")
+        input(id="password" name='password' placeholder="password" class="form-control" type="password" required)
+    div(class="form-group")
+        input(id="email" name='email' placeholder="email@email.com" class="form-control" type="text" required)
+        div(class="form-group")
+        input(id="firstName" name='firstName' placeholder="Primer nombre" class="form-control" type="text" required)
+        div(class="form-group")
+        input(id="lastName" name='lastName' placeholder="Apellido" class="form-control" type="text" required)
+    
+    
+    div(class="form-group")
+        input(class="btn btn-success my-3" type="submit" value="Login")

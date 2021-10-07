@@ -1,6 +1,10 @@
-h2 Ingrese su nombre
-form(class="form" action="/productos/login" method="post" role="form" autocomplete="off")
+h2 Login de usuario
+form(class="form" action="/api/login" method="post" role="form" autocomplete="off")
     div(class="form-group")
-        input(id="username" name='username' placeholder="nombre" class="form-control" type="text" required)
+        input(id="username" name='username' placeholder="Nombre de usuario" class="form-control" type="text" required)
+    div(class="form-group")
+        input(id="password" name='password' placeholder="password" class="form-control" type="password" required)
+    
+    
     div(class="form-group")
         input(class="btn btn-success my-3" type="submit" value="Login")
