@@ -13,18 +13,6 @@ router.post("/login", passport.authenticate("login"), function (req, res) {
   res.redirect("/productos/vista");
 });
 
-//router.post("/login", (req, res, next) => {
-//  passport.authenticate("login", function (err, user) {
-//    console.log(err, user);
-//    if (err) {
-//      return next(err);
-//    }
-//    if (!user) return res.status(401).json({ msj: "No existe el usuario" });
-//
-//    res.redirect("/productos/vista");
-//  })(req, res, next);
-//});
-
 router.post("/signup", (req, res, next) => {
   passport.authenticate("signup", function (err, user, info) {
     console.log(err, user, info);
