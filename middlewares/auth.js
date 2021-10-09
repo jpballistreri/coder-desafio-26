@@ -10,22 +10,40 @@ const strategyOptions = {
   passReqToCallback: true,
 };
 
+//const loginFunc = async (req, username, password, done) => {
+//  const user = await UserModel.findOne({ username });
+//
+//  if (!user) {
+//    console.log("NO EXISTE USUARIOOOO");
+//    return done(null, false);
+//  }
+//
+//  if ((await user.isValidPassword(password)) === false) {
+//    return done(null, true);
+//  }
+//  console.log("SALIO TODO BIEN");
+//  return done(null, user);
+//};
+
 const loginFunc = async (req, username, password, done) => {
-  const user = await UserModel.findOne({ username });
+  try {
+    const user = await UserModel.findOne({ username });
+    if (!user) {
+      console.log("NO EXISTE USUARIOOOO");
+      return done(null, false, "No existe usuario");
+    }
 
-  if (!user) {
-    console.log("NO EXISTE USUARIOOOO");
-    return done(null, false);
+    if ((await user.isValidPassword(password)) === false) {
+      return done(null, false, "Password invalido");
+    } else {
+      return done(null, user);
+    }
+  } catch (error) {
+    done(error);
   }
-
-  if ((await user.isValidPassword(password)) === false) {
-    return done(null, true);
-  }
-  console.log("SALIO TODO BIEN");
-  return done(null, user);
 };
 
-const signUpFunc = async (req, username, password, done) => {
+const signUpFunc = async (req, done) => {
   try {
     const { username, password, email, firstName, lastName } = req.body;
     console.log(req.body);

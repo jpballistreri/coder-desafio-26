@@ -37,6 +37,10 @@ router.get("/error-signup", async (req, res) => {
   res.render("error-signup");
 });
 
+router.get("/ok-signup", async (req, res) => {
+  res.render("ok-signup");
+});
+
 router.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/productos/login");

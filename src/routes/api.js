@@ -8,10 +8,28 @@ import passport from "../../middlewares/auth";
 
 const router = express.Router();
 
-router.post("/login", passport.authenticate("login"), function (req, res) {
-  console.log("LOGUEO OK");
-  res.redirect("/productos/vista");
-});
+//Con este router.post funciona bien el logueo
+router.post(
+  "/login",
+  passport.authenticate("login", {
+    successRedirect: "/productos/vista",
+    failureRedirect: "/productos/error-login",
+  })
+);
+
+//Con este router.post no loguea pero funcionan bien los redirect de error
+//router.post("/login", (req, res, next) => {
+//  passport.authenticate("login", function (err, user, info) {
+//    console.log(err, user, info);
+//    if (err) {
+//      return next(err);
+//    }
+//    if (!user) return res.redirect("/productos/error-login");
+//    else {
+//      return res.json({ redirect: "/productos/vista" });
+//    }
+//  })(req, res, next);
+//});
 
 router.post("/signup", (req, res, next) => {
   passport.authenticate("signup", function (err, user, info) {
@@ -21,7 +39,7 @@ router.post("/signup", (req, res, next) => {
     }
     if (!user) return res.redirect("/productos/error-signup");
 
-    res.json({ msg: "signup OK" });
+    return res.redirect("/productos/ok-signup");
   })(req, res, next);
 });
 
