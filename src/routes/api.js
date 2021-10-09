@@ -19,7 +19,7 @@ router.post("/signup", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    if (!user) return res.status(401).json({ data: info });
+    if (!user) return res.redirect("/productos/error-signup");
 
     res.json({ msg: "signup OK" });
   })(req, res, next);

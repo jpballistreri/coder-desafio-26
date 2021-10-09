@@ -19,7 +19,7 @@ const loginFunc = async (req, username, password, done) => {
   }
 
   if ((await user.isValidPassword(password)) === false) {
-    return done(null, false);
+    return done(null, true);
   }
   console.log("SALIO TODO BIEN");
   return done(null, user);
