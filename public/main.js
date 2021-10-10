@@ -51,7 +51,7 @@ function renderProductos(data) {
   document.getElementById("productos").innerHTML = html;
 }
 
-socket.on("array-productos", function (data) {
+socket.on("array-productos", (data) => {
   console.log("RECIBI LISTA");
   console.log(data);
   renderProductos(data);
